@@ -1,6 +1,6 @@
 # Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
 
-my_string = 'aaaaabbbcccc'  #сжатие
+my_string = 'AAAAAAFDDCCCCCCCAEEEEEEEEEEEEEEEEE11'  #сжатие
 def rle_in(my_string: str):
     final_string = ''
     count = 1
