@@ -44,12 +44,30 @@ def find_contact():
     return find
 
 def del_contact(pb):
-    delete_num = int(input(f'\t\t\t\t\tКакой элемент удалить? '))
-    return delete_num
+    delete_num = input(f'\t\t\t\t\tКакой элемент удалить? ')
+    if delete_num.isdigit():
+        if 0 < int(delete_num) <= len(pb):
+            pass
+        else:
+            print(f'\t\t\t\t\tОшибка ввода. Введите корреткный номер элемента')
+            return del_contact(pb)
+    else:
+        print(f'\t\t\t\t\tОшибка ввода. Введите корреткный номер элемента')
+        return del_contact(pb)
+    return int(delete_num)
 
-def edit_contact():
-    edit_num = int(input(f'\t\t\t\t\tКакой элемент изменить? '))
-    return edit_num
+def edit_contact(pb):
+    edit_num = input(f'\t\t\t\t\tКакой элемент изменить? ')
+    if edit_num.isdigit():
+        if 0 < int(edit_num) <= len(pb):
+            pass
+        else:
+            print(f'\t\t\t\t\tОшибка ввода. Введите корреткный номер элемента')
+            return del_contact(pb)
+    else:
+        print(f'\t\t\t\t\tОшибка ввода. Введите корреткный номер элемента')
+        return edit_contact()
+    return int(edit_num)
 
 def message_opened():
     print(f'\t\t\t\t\tФайл открыт')

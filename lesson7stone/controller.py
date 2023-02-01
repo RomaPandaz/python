@@ -37,7 +37,7 @@ def start():
             case 6:
                 pb = model.get_phone_book()
                 view.show_contacts(pb)
-                edit_num = (view.edit_contact())
+                edit_num = (view.edit_contact(pb))
                 new_contact = (view.create_new_contact())
                 model.edite(edit_num, new_contact)
             case 7:
