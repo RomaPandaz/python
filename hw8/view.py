@@ -1,7 +1,7 @@
 def input_exaple():
     example = input(f'\t\t\t\t\tВведите выражение: ')
     for i in example:
-        if i.isdigit() or i == '+' or '-' or '*' or '/': #не пойму почему не отрабатывает условие
+        if i.isdigit() or i in ('+','-','*','/'):
             pass
         else:
             print('\t\t\t\t\tВведите корректное выражение')
