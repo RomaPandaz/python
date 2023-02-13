@@ -1,3 +1,4 @@
-a = input('')
-b = a
-print(b)
+import random
+
+a = random.randint(1,2)
+print(a)

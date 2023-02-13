@@ -1,5 +1,6 @@
 from aiogram import types
 from loader import dp
+import random
 
 total_dict = {}
 
@@ -31,11 +32,35 @@ async def mes_start(message: types.Message):
 @dp.message_handler()
 async def bon_get(message: types.Message):
     global total_dict
-    if message.text.isdigit():
-        total_dict[message.from_user.id] -= int(message.text)
-        await message.answer(f'{message.from_user.first_name} взял {message.text} конфет. '
-                                f'На столе осталось {total_dict[message.from_user.id]} конфет')
-
+    if total_dict[message.from_user.id]!=0:
+        if message.text.isdigit():
+            if 0 < int(message.text) < 29 and 0 < int(message.text) < total_dict[message.from_user.id]:
+                total_dict[message.from_user.id] -= int(message.text)
+                await message.answer(f'{message.from_user.first_name} взял {message.text} конфет. '
+                                        f'На столе осталось {total_dict[message.from_user.id]} конфет')
+            elif total_dict[message.from_user.id]<int(message.text) < 28 and 0 <= int(message.text) < total_dict[message.from_user.id]:
+                await message.answer(f'Введи число от 1 до {total_dict[message.from_user.id]}')
+                bon_get()
+            else:
+                await message.answer(f'Введи число от 1 до 28')
+                bon_get()
+        else:
+            await message.answer(f'Пиши нормально')
+            bon_get()
+    else:
+        await message.answer(f'Победил человек')
+    if total_dict[message.from_user.id]!=0:
+    #ходит бот
+        if total_dict[message.from_user.id] <= 28:
+                rnd_bot_get = random.randint(1,total_dict[message.from_user.id])
+        else:
+                rnd_bot_get = random.randint(1,28)
+        total_dict[message.from_user.id] -= rnd_bot_get
+        await message.answer(f'Бот взял {rnd_bot_get} конфет. Осталось {total_dict[message.from_user.id]}')
+    elif total_dict[message.from_user.id]!=0:
+        await message.answer(f'Ваш ход')
+    else:
+        await message.answer(f'Робедил бот')
 
     # @dp.message_handler()
     # async def bon_get(message: types.Message):
